@@ -218,11 +218,8 @@ def get_avg_mb(x1, y1, x2, y2):
     y_len = abs(y2 - y1)
     line_length = math.sqrt(x_len ** 2 + y_len ** 2)
 
-    x = np.asarray([x1, x2])
-    y = np.asarray([y1, y2])
-
     # fit with np.polyfit
-    m, b = np.polyfit(x, y, 1)
+    m, b = np.polyfit(np.asarray([x1, x2]), np.asarray([y1, y2]), 1)
 
     return [m] * int(line_length), [b] * int(line_length),
 

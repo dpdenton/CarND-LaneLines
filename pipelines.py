@@ -5,8 +5,7 @@ import matplotlib.pyplot as plt
 
 class ImagePipeline(object):
 
-    PIPELINE_DIR = 'pipeline_img'
-    SEGMENT = 24
+    PIPELINE_DIR = '/pipeline_img'
 
     def __init__(self, show_img=False, save_img=False):
 
@@ -24,8 +23,9 @@ class ImagePipeline(object):
         return self
 
     def reset_history(self):
+
         self.history = {
-            'intersection': [(0,0)],
+            'intersection': [(0, 0)],
             'left': {
                 'm': [-0.7],
                 'b': [0],
@@ -42,6 +42,7 @@ class ImagePipeline(object):
         return self
 
     def replace_pipe(self, fn, *args, **kwargs):
+
         for idx, pipe in enumerate(self._pipes):
             if pipe[0] == fn:
                 self._pipes[idx] = (fn, args, kwargs)
@@ -90,8 +91,8 @@ class ImagePipeline(object):
             # if vertices have already been set and not using 'dynamic' vertices then nothing further required
             if self.vertices.size:
                 return self
-            coord_1 = (10 * x_segment, y_segment*15)
-            coord_2 = (14 * x_segment, y_segment*15)
+            coord_1 = (10 * x_segment, y_segment * 15)
+            coord_2 = (14 * x_segment, y_segment * 15)
 
         self.vertices = np.array([
             [
@@ -105,13 +106,14 @@ class ImagePipeline(object):
 
         return self
 
+
 # example usage
 from helpers import *
 
 pipeline = ImagePipeline(show_img=False, save_img=False)
 
-def process_image(image):
 
+def process_image(image):
     # set pipeline
     pipeline.reset()
     pipeline.set_image(image)
@@ -124,10 +126,10 @@ def process_image(image):
         .add_pipe(gaussian_blur, kernel_size=5) \
         .add_pipe(canny, low_threshold=50, high_threshold=150) \
         .add_pipe(region_of_interest, vertices=pipeline.vertices) \
-        .add_pipe(hough_lines, rho=1, theta=np.pi/180, threshold=15,
+        .add_pipe(hough_lines, rho=1, theta=np.pi / 180, threshold=15,
                   min_line_len=20, max_line_gap=40, history=pipeline.history, using=draw_lines_v3) \
-        .add_pipe(weighted_img,  initial_img=pipeline.original_image, α=0.8, β=1., λ=0.) \
-
+        .add_pipe(weighted_img, initial_img=pipeline.original_image, α=0.8, β=1., λ=0.) \
+ \
     # start flow
     pipeline.flow()
 
