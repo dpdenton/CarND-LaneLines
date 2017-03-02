@@ -1,24 +1,6 @@
-#**Finding Lane Lines on the Road** 
+#**Finding Lane Lines on the Road: Reflection**
 
-##Writeup
-
----
-
-**Finding Lane Lines on the Road**
-
-The goals / steps of this project are the following:
-* Make a pipeline that finds lane lines on the road
-* Reflect on your work in a written report
-
-[//]: # (Image References)
-
-[image1]: ./examples/grayscale.jpg "Grayscale"
-
----
-
-### Reflection
-
-###1. Overview
+###1. Description
 
 My pipeline consisted of 7 steps.
 
@@ -58,7 +40,7 @@ lines included, further skewing the line of best fit.
 
 Other cars on the road. Cars changing lanes covering the markings.
 
-###3. Improvements
+###4. Improvements
 
 I modified  draw_lines_v2 further (renamed to  draw_lines_v3) and included a 'history' component.
 
@@ -77,7 +59,7 @@ Lines were then plotted using these values for m and b and overlaid onto the ori
 
 If no lines were detected 'm' and 'b' were set to the previous values.
 
-###3. Shortcoming of Improvements
+###5. Shortcoming of Improvements
 
 Initial values for 'history' are hard-coded – a more sophisticated method for setting these values should be used,
 along with some 'confidence' factor in the detection of lines, as the pipeline can fall apart if it starts filtering
