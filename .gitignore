@@ -2,7 +2,7 @@
 */
 
 # misc
-.idea/
+.idea/*
 workbench.py
 
 # Byte-compiled / optimized / DLL files
